@@ -35,9 +35,10 @@ vnoremap jk <Esc>
 
 let mapleader=" "
 
-" Reload vimrc
-map <Leader>r :w<CR>:so ~/.vimrc<CR>
-map <Leader>i :w<CR>:call system("i3-msg restart")<CR>
+" Save current file, reload vim config, and restart i3.
+map <Leader>r :w<CR>:so ~/.vimrc<CR>:call system("i3-msg restart")<CR>
+map <Leader>c :!zsh -e rc-commit<CR>
+map <Leader>b :BundleInstall<CR>
 
 " Easy splitted window navigation
 map <Leader>h <C-w>h
@@ -55,7 +56,6 @@ map <Leader>q :q<CR>
 map <Leader>s :w<CR>
 
 map <Leader>g :Goyo<CR> :Limelight!!0.8<CR>
-map <Leader>b :BundleInstall<CR>
 
 " Begin Vundle Config
 set rtp+=~/.vim/bundle/vundle/
