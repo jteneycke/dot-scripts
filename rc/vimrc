@@ -41,7 +41,7 @@ map <Leader>b :BundleInstall<CR>
 
 " Fast up / down
 nnoremap <S-j> <C-d>
-nnoremap <S-k> <C-u>
+nnoremap <S-k> <C-u> 
 
 " Easy splitted window navigation
 nnoremap <S-h> <C-w>h
@@ -75,25 +75,18 @@ map <Leader>f <plug>NERDTreeTabsToggle<CR>
 " My Bundles here:
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-surround'
 Bundle 'itchyny/lightline.vim'
-"Bundle 'tpope/vim-rails.git'
-Bundle 'tpope/vim-bundler'
 Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
-Bundle 'junegunn/seoul256.vim'
 Bundle 'junegunn/rainbow_parentheses.vim'
 
-let g:seoul256_background = 234
-colo seoul256
-
-" language tools
 Bundle 'scrooloose/syntastic'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'tpope/vim-haml'
@@ -101,6 +94,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-liquid'
 Bundle 'tkztmk/vim-vala'
 Bundle 'exu/pgsql.vim'
+Bundle 'guns/vim-clojure-static'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'kchmck/vim-coffee-script'
 
@@ -110,24 +104,21 @@ Bundle 'vim-scripts/omlet.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'airblade/vim-gitgutter'
 
+" Themes
+Bundle 'sjl/badwolf'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'endel/vim-github-colorscheme'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/base16-vim'
+Bundle 'tomasr/molokai'
+Bundle 'junegunn/seoul256.vim'
+let g:seoul256_background = 234
+colo seoul256
+
+" Some OCAML stuff?
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 execute "set rtp+=" . g:opamshare . "/merlin/vimbufsync"
-
-au BufNewFile,BufRead *.sql setf pgsql
-au BufNewFile,BufRead *.ejs* set filetype=html
-au BufNewFile,BufRead *.html.slim set filetype=slim
-au BufNewFile,BufRead *.cljs set filetype=clojure
-au BufNewFile,BufRead *.pde set filetype=java
-au BufNewFile,BufRead *.hl set filetype=clojure
-au BufNewFile,BufRead *.liso set filetype=julia
-au BufNewFile,BufRead *.vala set filetype=cs
-au BufNewFile,BufRead *.odocl set filetype=ocaml
-au BufNewFile,BufRead *.topscript set filetype=ocaml
-au BufNewFile,BufRead *.rawscript set filetype=ocaml
-au BufNewFile,BufRead .pryrc set filetype=ruby
-au BufNewFile,BufRead *.routes set filetype=erlang
-au BufNewFile,BufRead rebar.config set filetype=erlang
 
 " Indent Settings
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -150,17 +141,7 @@ let g:ctrlp_split_window = 1 " <CR> = New Tab
 let g:ctrlp_open_new_file = 't' " Open newly created files in a new tab
 let g:ctrlp_open_multiple_files = 't' " Open multiple files in new tabs
 let g:ctrlp_show_hidden = 1 " Index hidden files
-
 set wildignore+=*/public/uploads/*
-
-" Themes
-Bundle 'sjl/badwolf'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
-Bundle 'tomasr/molokai'
-"colorscheme molokai
 
 " Only show cursorline in the current window and in normal mode.
 augroup cline
@@ -192,7 +173,22 @@ function! XTermPasteBegin()
   return ""
 endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()         
- 
+
+" File associations
+au BufNewFile,BufRead *.sql set filetype=pgsql
+au BufNewFile,BufRead *.ejs* set filetype=html
+au BufNewFile,BufRead *.html.slim set filetype=slim
+au BufNewFile,BufRead *.cljs set filetype=clojure
+au BufNewFile,BufRead *.pde set filetype=java
+au BufNewFile,BufRead *.hl set filetype=clojure
+au BufNewFile,BufRead *.liso set filetype=julia
+au BufNewFile,BufRead *.vala set filetype=cs
+au BufNewFile,BufRead *.odocl set filetype=ocaml
+au BufNewFile,BufRead *.topscript set filetype=ocaml
+au BufNewFile,BufRead *.rawscript set filetype=ocaml
+au BufNewFile,BufRead .pryrc set filetype=ruby
+au BufNewFile,BufRead *.routes set filetype=erlang
+au BufNewFile,BufRead rebar.config set filetype=erlang
 
 filetype plugin indent on     " required!
 "
