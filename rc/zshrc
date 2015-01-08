@@ -3,10 +3,8 @@ ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-# Because I'm a goddamn addict for changing my config
-alias i="vim ~/.i3/config"
-alias v="vim ~/.vimrc"
-alias z="vim ~/.zshrc && echo 'Sourcing zshrc...' && source ~/.zshrc"
+# Open all of the rc's!
+alias v="(vim -p ~/.zshrc ~/.vimrc ~/.i3/config) && echo 'Sourcing zshrc...' && source ~/.zshrc" 
 
 # Hack to open new terms in same dir
 alias a="gnome-terminal ."

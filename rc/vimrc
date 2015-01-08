@@ -37,24 +37,27 @@ let mapleader=" "
 
 " Save current file, reload vim config, and restart i3.
 map <Leader>r :w<CR>:so ~/.vimrc<CR>:call system("i3-msg restart")<CR>
-map <Leader>c :!zsh -e rc-commit<CR>
 map <Leader>b :BundleInstall<CR>
-
-" Easy splitted window navigation
-map <Leader>h <C-w>h
-map <Leader>l <C-w>l
 
 " Fast up / down
 nnoremap <S-j> <C-d>
 nnoremap <S-k> <C-u>
 
+" Easy splitted window navigation
+nnoremap <S-h> <C-w>h
+nnoremap <S-l> <C-w>l
+
+map <Leader>d :NERDTreeFind<CR>
+
 " Wicked Tab management
-map <Leader>j gT
-map <Leader>k gt
+map <Leader>j :tabp<CR>
+map <Leader>k :tabn<CR>
 map <Leader>t :tabnew<CR>
+
 map <Leader>q :q<CR>
 map <Leader>s :w<CR>
 
+map <Leader>v V
 map <Leader>g :Goyo<CR> :Limelight!!0.8<CR>
 
 " Begin Vundle Config
@@ -95,21 +98,22 @@ Bundle 'scrooloose/syntastic'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
-Bundle 'elixir-lang/vim-elixir'
-Bundle 'tkztmk/vim-vala'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'mileszs/ack.vim'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-liquid'
+Bundle 'tkztmk/vim-vala'
+Bundle 'exu/pgsql.vim'
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'kchmck/vim-coffee-script'
+
+Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-scripts/omlet.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'airblade/vim-gitgutter'
 
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 execute "set rtp+=" . g:opamshare . "/merlin/vimbufsync"
 
-Bundle 'exu/pgsql.vim'
 au BufNewFile,BufRead *.sql setf pgsql
 au BufNewFile,BufRead *.ejs* set filetype=html
 au BufNewFile,BufRead *.html.slim set filetype=slim
@@ -124,14 +128,6 @@ au BufNewFile,BufRead *.rawscript set filetype=ocaml
 au BufNewFile,BufRead .pryrc set filetype=ruby
 au BufNewFile,BufRead *.routes set filetype=erlang
 au BufNewFile,BufRead rebar.config set filetype=erlang
-
-
-"let s:bcs = b:current_syntax
-"unlet b:current_syntax
-"syntax include @SQL pgsql.vim
-"let b:current_syntax = s:bcs
-"syntax region rubyHereDocSQL matchgroup=Statement start=+<<\z(SQL\)+ end=+^\z1$+ contains=@SQL
-"syntax region rubyHereDocDashSQL matchgroup=Statement start=+<<-\z(SQL\)+ end=+\s\+\z1$+ contains=@SQL
 
 " Indent Settings
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -174,45 +170,6 @@ augroup cline
     au InsertEnter * set nocursorline
     au InsertLeave * set cursorline
 augroup END
-
-" rspec mappings
-"map <Leader>t :call RunCurrentSpecFile()<CR>
-"map <Leader>s :call RunNearestSpec()<CR>
-"map <Leader>l :call RunLastSpec()<CR>
-"
-"function! RunCurrentSpecFile()
-"  if InSpecFile()
-"    let l:command = "s " . @% . " -f documentation"
-"    call SetLastSpecCommand(l:command)
-"    call RunSpecs(l:command)
-"  endif
-"endfunction
-"
-"function! RunNearestSpec()
-"  if InSpecFile()
-"    let l:command = "s " . @% . " -l " . line(".") . " -f documentation"
-"    call SetLastSpecCommand(l:command)
-"    call RunSpecs(l:command)
-"  endif
-"endfunction
-"
-"function! RunLastSpec()
-"  if exists("t:last_spec_command")
-"    call RunSpecs(t:last_spec_command)
-"  endif
-"endfunction
-"
-"function! InSpecFile()
-"  return match(expand("%"), "_spec.rb$") != -1
-"endfunction
-"
-"function! SetLastSpecCommand(command)
-"  let t:last_spec_command = a:command
-"endfunction
-"
-"function! RunSpecs(command)
-"  execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
-"endfunction
 
 " Automatically set paste mode in Vim when pasting in insert mode  
 " https://coderwall.com/p/if9mda
