@@ -4,3 +4,4 @@ cp ./rc/i3 ~/.i3/config
 cp ./rc/vimrc ~/.vimrc
 cp ./rc/pryrc ~/.pryrc
 cp ./rc/zshrc ~/.zshrc
+cp ./rc/xmodmap ~/.Xmodmap
