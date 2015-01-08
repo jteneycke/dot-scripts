@@ -7,9 +7,8 @@ set number
 set hlsearch
 set expandtab
 set synmaxcol=250
-
 set guifont=Ubuntu\ Mono\ 24
-
+set clipboard=unnamedplus " Yank and paste to the system clipboard
 
 if &term =~ '256color'
   " Disable Background Color Erase (BCE) so that color schemes
@@ -31,25 +30,32 @@ set directory=~/.vim/tmp/swap//   " swap files
 set backup
 set noswapfile
 
+inoremap jk <Esc>
+vnoremap jk <Esc>
+
 let mapleader=" "
 
+" Reload vimrc
+map <Leader>r :w<CR>:so ~/.vimrc<CR>
+map <Leader>i :w<CR>:call system("i3-msg restart")<CR>
+
 " Easy splitted window navigation
-nnoremap <S-h> <C-w>h
-nnoremap <S-l> <C-w>l
+map <Leader>h <C-w>h
+map <Leader>l <C-w>l
+
+" Fast up / down
+nnoremap <S-j> <C-d>
+nnoremap <S-k> <C-u>
 
 " Wicked Tab management
 map <Leader>j gT
 map <Leader>k gt
 map <Leader>t :tabnew<CR>
 map <Leader>q :q<CR>
+map <Leader>s :w<CR>
 
-" Fast up / down
-nnoremap <S-j> <C-d>
-nnoremap <S-k> <C-u>
-
-" https://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard
-vnoremap <C-c> "*yy
-"vnoremap <C-c> "+yy
+map <Leader>g :Goyo<CR> :Limelight!!0.8<CR>
+map <Leader>b :BundleInstall<CR>
 
 " Begin Vundle Config
 set rtp+=~/.vim/bundle/vundle/
@@ -62,9 +68,6 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 map <Leader>f <plug>NERDTreeTabsToggle<CR>
-
-" Reload vimrc
-map <Leader>r :w<CR>:so ~/.vimrc<CR>
 
 " My Bundles here:
 Bundle 'L9'
@@ -79,6 +82,13 @@ Bundle 'tpope/vim-surround'
 Bundle 'itchyny/lightline.vim'
 "Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-bundler'
+Bundle 'junegunn/goyo.vim'
+Bundle 'junegunn/limelight.vim'
+Bundle 'junegunn/seoul256.vim'
+Bundle 'junegunn/rainbow_parentheses.vim'
+
+let g:seoul256_background = 234
+colo seoul256
 
 " language tools
 Bundle 'scrooloose/syntastic'
@@ -93,6 +103,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-scripts/omlet.vim'
+Bundle 'majutsushi/tagbar'
 
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
@@ -114,7 +125,6 @@ au BufNewFile,BufRead .pryrc set filetype=ruby
 au BufNewFile,BufRead *.routes set filetype=erlang
 au BufNewFile,BufRead rebar.config set filetype=erlang
 
-Bundle 'majutsushi/tagbar'
 
 "let s:bcs = b:current_syntax
 "unlet b:current_syntax
@@ -154,7 +164,7 @@ Bundle 'endel/vim-github-colorscheme'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
 Bundle 'tomasr/molokai'
-colorscheme molokai
+"colorscheme molokai
 
 " Only show cursorline in the current window and in normal mode.
 augroup cline

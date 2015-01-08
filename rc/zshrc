@@ -18,7 +18,7 @@ alias count-lines="wc -l"
 alias rc-backup="cd ~/dot-scripts; ~/dot-scripts/backup"
 alias rc-push="cd ~/dot-scripts; git push; cd -"
 
-alias i3rc="vim ~/.i3/config && i3-msg restart"
+alias i3rc="vim ~/.i3/config" # && i3-msg restart"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc && echo 'Sourcing zshrc...' && source ~/.zshrc"
 alias zource="source ~/.zshrc"
