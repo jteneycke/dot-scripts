@@ -1,0 +1,43 @@
+begin
+  require 'awesome_print'
+  AwesomePrint.defaults = {
+    indent: -2, # left aligned
+    sort_keys: true, # sort hash keys
+  }
+
+  module AwesomePrint
+    class Inspector
+      alias_method :old_printable, :printable
+      private
+      def printable(object)
+        if object.class.to_s.downcase.include?("activerecord_relation")
+          return :activerecord_relation
+        end
+        old_printable(object)
+      end
+    end
+  end
+rescue LoadError => err
+  puts "Oh darn! No AwesomePrint! Add it to your gemfile."
+  puts ""
+  puts "       gem 'awesome_print'"
+  puts ""
+end
+
+Pry.config.editor = 'vim'
+Pry.config.theme = "pry-modern-256"
+
+#if defined? Coolline
+#  Pry.config.input = Coolline.new do |c|
+#    # c.word_boundaries += ["."]
+#
+#    c.transform_proc = proc do
+#      CodeRay.scan(c.line, :ruby).term
+#    end
+#
+#    c.completion_proc = proc do
+#      word = c.completed_word
+#      Object.constants.map(&:to_s).select { |w| w.start_with? word }
+#    end
+#  end
+#end
