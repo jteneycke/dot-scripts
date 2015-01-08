@@ -41,7 +41,7 @@ map <Leader>b :BundleInstall<CR>
 
 " Fast up / down
 nnoremap <S-j> <C-d>
-nnoremap <S-k> <C-u> 
+nnoremap <S-k> <C-u>
 
 " Easy splitted window navigation
 nnoremap <S-h> <C-w>h
@@ -115,10 +115,17 @@ Bundle 'junegunn/seoul256.vim'
 let g:seoul256_background = 234
 colo seoul256
 
+
+Bundle 'terryma/vim-expand-region'
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+
 " Some OCAML stuff?
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 execute "set rtp+=" . g:opamshare . "/merlin/vimbufsync"
+
 
 " Indent Settings
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -129,9 +136,11 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black    ctermbg=235 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=236 
 
+
 Bundle 'michaeljsmith/vim-indent-object'
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
- 
+
+
 " CtrlP 
 Bundle 'kien/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -143,6 +152,7 @@ let g:ctrlp_open_multiple_files = 't' " Open multiple files in new tabs
 let g:ctrlp_show_hidden = 1 " Index hidden files
 set wildignore+=*/public/uploads/*
 
+
 " Only show cursorline in the current window and in normal mode.
 augroup cline
     au!
@@ -151,6 +161,7 @@ augroup cline
     au InsertEnter * set nocursorline
     au InsertLeave * set cursorline
 augroup END
+
 
 " Automatically set paste mode in Vim when pasting in insert mode  
 " https://coderwall.com/p/if9mda
@@ -174,6 +185,7 @@ function! XTermPasteBegin()
 endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()         
 
+
 " File associations
 au BufNewFile,BufRead *.sql set filetype=pgsql
 au BufNewFile,BufRead *.ejs* set filetype=html
@@ -189,6 +201,7 @@ au BufNewFile,BufRead *.rawscript set filetype=ocaml
 au BufNewFile,BufRead .pryrc set filetype=ruby
 au BufNewFile,BufRead *.routes set filetype=erlang
 au BufNewFile,BufRead rebar.config set filetype=erlang
+
 
 filetype plugin indent on     " required!
 "
