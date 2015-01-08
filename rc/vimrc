@@ -35,7 +35,7 @@ let mapleader=" "
 
 " Easy splitted window navigation
 nnoremap <S-h> <C-w>h
-nnoremap <S-m> <C-w>l
+nnoremap <S-l> <C-w>l
 
 " Wicked Tab management
 map <Leader>j gT
@@ -61,7 +61,7 @@ Bundle 'gmarik/vundle'
 " nerdtree
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>f <plug>NERDTreeTabsToggle<CR>
 
 " Reload vimrc
 map <Leader>r :w<CR>:so ~/.vimrc<CR>
