@@ -3,7 +3,8 @@ ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-alias f="gnome-terminal ."
+alias a="gnome-terminal ."
+alias f="history | grep -i"
 alias y="youtube-dl"
 alias ack="ack-grep"
 alias sai="sudo apt-get install"
@@ -12,6 +13,7 @@ alias stopit="sudo shutdown -h now"
 alias server="python -m SimpleHTTPServer"
 alias pretty-path="echo $PATH | tr ':' '\n'" 
 alias file-associations="kcmshell4 filetypes"
+alias count-lines="wc -l"
 
 alias rc-backup="cd ~/dot-scripts; ~/dot-scripts/backup"
 alias rc-push="cd ~/dot-scripts; git push; cd -"
