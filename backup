@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-cp ~/.i3/config ./rc/i3
+cp ~/.i3/config ./rc/i3_config
+cp ~/.i3/status ./rc/i3_status
 cp ~/.vimrc ./rc/vimrc
 cp ~/.pryrc ./rc/pryrc
 cp ~/.zshrc ./rc/zshrc
