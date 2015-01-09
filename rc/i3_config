@@ -21,61 +21,73 @@ set $alt Mod1
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 font pango:DejaVu Sans Mono 25
+exec --no-startup-id feh --bg-scale /home/josh/Pictures/website-background2.jpg
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+O exec google-chrome
-bindsym $mod+Shift+I exec google-chrome --incognito
-bindsym $mod+Shift+D exec dolphin
+bindsym $mod+Return        split vertical;    exec i3-sensible-terminal
+bindsym $mod+Shift+Return  split horizontal;  exec i3-sensible-terminal
 
-set $WS1 1
-set $WS2 tasks
-set $WS3 chat
-set $WS4 4
-set $WS5 5
-set $WS6 6
-set $WS7 7
-set $WS8 8
-set $WS9 9
-set $WS0 music
-
-exec pidgin
-exec deadbeef
-exec /home/josh/youtuber
-exec xdg-open "http://localhost:3000"
-
-
-assign [class="Pidgin"] chat
-assign [class="Deadbeef"] music
-assign [class="Midori"] tasks
-
-for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Progress Dialog)"] floating enable
-
+bindsym $mod+Shift+O       exec google-chrome
+bindsym $mod+Shift+I       exec google-chrome --incognito
+bindsym $mod+Shift+D       exec dolphin
 bindsym $mod+bracketleft   exec amixer set Master 1-
 bindsym $mod+bracketright  exec amixer set Master 1+
 bindsym $mod+backslash     exec amixer -D pulse set Master toggle
 
+# Music Workspace
+set $WS0 Music
+exec deadbeef
+assign [class="Deadbeef"] Music
+
+# Persisent Planning, Writing, Learning
+set $WS1 Dashboard
+exec xdg-open "http://localhost:3000"
+assign [class="Google-chrome-stable" title="^http.\/\/localhost.*"] Dashboard
+
+set $WS2 Writing
+exec gedit
+assign [class="Gedit"] Writing
+
+set $WS3 Language
+exec xdg-open "https://www.duolingo.com/"
+assign [class="Google-chrome-stable" title="^Duolingo.*"] Language
+
+# Contract Workspaces
+set $WS4 Hollistons
+set $WS5 Worn
+set $WS6 Bonfide
+
+# Undecided / Scratch Space
+set $WS7 Research
+set $WS8 Research
+set $WS9 Research
+
+
+for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Progress Dialog)"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-#
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
+#bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+d exec --no-startup-id my_dmenu
-bindsym $mod+space exec --no-startup-id gnome-do
+#bindsym $mod+space exec --no-startup-id gnome-do
 
-exec --no-startup-id feh --bg-scale /home/josh/Pictures/website-background2.jpg
-#exec --no-startup-id feh --bg-scale 
+bindsym $mod+space       split horizontal; exec --no-startup-id gnome-do
+bindsym $mod+Shift+space split vertical;   exec --no-startup-id gnome-do
 
 
+
+# split in horizontal orientation
+bindsym $mod+equal split horizontal
+
+# split in vertical orientation
+bindsym $mod+minus split vertical
 
 # change focus
 bindsym $mod+h focus left
@@ -101,12 +113,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+Shift+n split h
-
-# split in vertical orientation
-bindsym $mod+Shift+m split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+f fullscreen
 
@@ -126,6 +132,9 @@ bindsym $mod+Shift+e layout toggle split
 
 # focus the child container
 #bindsym $mod+d focus child
+
+bindsym $mod+Super_R workspace prev_on_output
+bindsym $mod+Menu workspace next_on_output
 
 # switch to workspace
 bindsym $mod+1 workspace $WS1

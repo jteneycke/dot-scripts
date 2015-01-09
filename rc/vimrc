@@ -60,6 +60,8 @@ map <Leader>s :w<CR>
 map <Leader>v V
 map <Leader>g :Goyo<CR> :Limelight!!0.8<CR>
 
+nmap <Leader>ph :<c-u>let pc = (v:count1 ? v:count1 : 1)<cr>:read !tail -<c-r>=pc<cr> ~/.pry_history<cr>:.-<c-r>=pc-1<cr>:norm <c-r>=pc<cr>==<cr>
+
 " Begin Vundle Config
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
