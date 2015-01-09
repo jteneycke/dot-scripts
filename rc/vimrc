@@ -118,9 +118,9 @@ let g:seoul256_background = 234
 colo seoul256
 
 
-Bundle 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+"Bundle 'terryma/vim-expand-region'
+"vmap v <Plug>(expand_region_expand)
+"vmap <C-v> <Plug>(expand_region_shrink)
 
 
 " Some OCAML stuff?

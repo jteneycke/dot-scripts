@@ -37,32 +37,32 @@ bindsym $mod+bracketright  exec amixer set Master 1+
 bindsym $mod+backslash     exec amixer -D pulse set Master toggle
 
 # Music Workspace
-set $WS0 Music
+set $WS0 Music [0]
 exec deadbeef
-assign [class="Deadbeef"] Music
+assign [class="Deadbeef"] Music [0]
 
 # Persisent Planning, Writing, Learning
-set $WS1 Dashboard
+set $WS1 Dashboard [1]
 exec xdg-open "http://localhost:3000"
-assign [class="Google-chrome-stable" title="^http.\/\/localhost.*"] Dashboard
+assign [class="Google-chrome-stable" title="^http.\/\/localhost.*"] Dashboard [1]
 
-set $WS2 Writing
+set $WS2 Writing [2]
 exec gedit
-assign [class="Gedit"] Writing
+assign [class="Gedit"] Writing [2]
 
-set $WS3 Language
+set $WS3 Language [3]
 exec xdg-open "https://www.duolingo.com/"
-assign [class="Google-chrome-stable" title="^Duolingo.*"] Language
+assign [class="Google-chrome-stable" title="^Duolingo.*"] Language [3]
 
 # Contract Workspaces
-set $WS4 Hollistons
-set $WS5 Worn
-set $WS6 Bonfide
+set $WS4 Hollistons [4]
+set $WS5 Worn [5]
+set $WS6 Bonfide [6]
 
 # Undecided / Scratch Space
-set $WS7 Research
-set $WS8 Research
-set $WS9 Research
+set $WS7 Research [7]
+set $WS8 Research [8]
+set $WS9 Research [9]
 
 
 for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Progress Dialog)"] floating enable
@@ -137,17 +137,6 @@ bindsym $mod+Super_R workspace prev_on_output
 bindsym $mod+Menu workspace next_on_output
 
 # switch to workspace
-bindsym $mod+1 workspace $WS1
-bindsym $mod+2 workspace $WS2
-bindsym $mod+3 workspace $WS3
-bindsym $mod+4 workspace $WS4
-bindsym $mod+5 workspace $WS5
-bindsym $mod+6 workspace $WS6
-bindsym $mod+7 workspace $WS7
-bindsym $mod+8 workspace $WS8
-bindsym $mod+9 workspace $WS9
-bindsym $mod+0 workspace $WS0
-
 bindsym $mod+KP_1 workspace $WS1
 bindsym $mod+KP_2 workspace $WS2
 bindsym $mod+KP_3 workspace $WS3
@@ -159,18 +148,18 @@ bindsym $mod+KP_8 workspace $WS8
 bindsym $mod+KP_9 workspace $WS9
 bindsym $mod+KP_0 workspace $WS0
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $WS1
-bindsym $mod+Shift+2 move container to workspace $WS2
-bindsym $mod+Shift+3 move container to workspace $WS3
-bindsym $mod+Shift+4 move container to workspace $WS4
-bindsym $mod+Shift+5 move container to workspace $WS5
-bindsym $mod+Shift+6 move container to workspace $WS6
-bindsym $mod+Shift+7 move container to workspace $WS7
-bindsym $mod+Shift+8 move container to workspace $WS8
-bindsym $mod+Shift+9 move container to workspace $WS9
-bindsym $mod+Shift+0 move container to workspace $WS10
+bindsym $alt+KP_1 workspace $WS1
+bindsym $alt+KP_2 workspace $WS2
+bindsym $alt+KP_3 workspace $WS3
+bindsym $alt+KP_4 workspace $WS4
+bindsym $alt+KP_5 workspace $WS5
+bindsym $alt+KP_6 workspace $WS6
+bindsym $alt+KP_7 workspace $WS7
+bindsym $alt+KP_8 workspace $WS8
+bindsym $alt+KP_9 workspace $WS9
+bindsym $alt+KP_0 workspace $WS0
 
+# move focused container to workspace
 bindsym $mod+Shift+KP_1 move container to workspace $WS1
 bindsym $mod+Shift+KP_2 move container to workspace $WS2
 bindsym $mod+Shift+KP_3 move container to workspace $WS3
@@ -181,6 +170,17 @@ bindsym $mod+Shift+KP_7 move container to workspace $WS7
 bindsym $mod+Shift+KP_8 move container to workspace $WS8
 bindsym $mod+Shift+KP_9 move container to workspace $WS9
 bindsym $mod+Shift+KP_0 move container to workspace $WS10
+
+bindsym $alt+Shift+KP_1 move container to workspace $WS1
+bindsym $alt+Shift+KP_2 move container to workspace $WS2
+bindsym $alt+Shift+KP_3 move container to workspace $WS3
+bindsym $alt+Shift+KP_4 move container to workspace $WS4
+bindsym $alt+Shift+KP_5 move container to workspace $WS5
+bindsym $alt+Shift+KP_6 move container to workspace $WS6
+bindsym $alt+Shift+KP_7 move container to workspace $WS7
+bindsym $alt+Shift+KP_8 move container to workspace $WS8
+bindsym $alt+Shift+KP_9 move container to workspace $WS9
+bindsym $alt+Shift+KP_0 move container to workspace $WS10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
