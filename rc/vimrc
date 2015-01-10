@@ -47,7 +47,8 @@ nnoremap <S-k> <C-u>
 nnoremap <S-h> <C-w>h
 nnoremap <S-l> <C-w>l
 
-map <Leader>d :NERDTreeFind<CR>
+nnoremap <Leader>d :NERDTreeFind<CR>
+map <Leader>f <plug>NERDTreeTabsToggle<CR>
 
 " Wicked Tab management
 map <Leader>j :tabp<CR>
@@ -56,10 +57,15 @@ map <Leader>t :tabnew<CR>
 
 map <Leader>q :q<CR>
 map <Leader>s :w<CR>
+map <Leader>w :w<CR>
 
-map <Leader>v V
-map <Leader>g :Goyo<CR> :Limelight!!0.8<CR>
+map <Leader>g :Goyo<CR>
+autocmd User GoyoEnter :set linebreak
+autocmd User GoyoEnter Limelight
+autocmd User GoyoLeave :set linebreak!
+autocmd User GoyoLeave Limelight!
 
+" Paste last line of pry history to buffer
 nmap <Leader>ph :<c-u>let pc = (v:count1 ? v:count1 : 1)<cr>:read !tail -<c-r>=pc<cr> ~/.pry_history<cr>:.-<c-r>=pc-1<cr>:norm <c-r>=pc<cr>==<cr>
 
 " Begin Vundle Config
@@ -69,15 +75,12 @@ call vundle#rc()
 " let Vundle manage Vundle (need this for the rest)
 Bundle 'gmarik/vundle'
 
-" nerdtree
+Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
-map <Leader>f <plug>NERDTreeTabsToggle<CR>
 
-" My Bundles here:
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-"Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
@@ -89,7 +92,6 @@ Bundle 'junegunn/goyo.vim'
 Bundle 'junegunn/limelight.vim'
 Bundle 'junegunn/rainbow_parentheses.vim'
 
-Bundle 'scrooloose/syntastic'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
@@ -117,17 +119,10 @@ Bundle 'junegunn/seoul256.vim'
 let g:seoul256_background = 234
 colo seoul256
 
-
-"Bundle 'terryma/vim-expand-region'
-"vmap v <Plug>(expand_region_expand)
-"vmap <C-v> <Plug>(expand_region_shrink)
-
-
-" Some OCAML stuff?
+" Some OCAML stuff
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 execute "set rtp+=" . g:opamshare . "/merlin/vimbufsync"
-
 
 " Indent Settings
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -138,10 +133,8 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black    ctermbg=235 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=236 
 
-
 Bundle 'michaeljsmith/vim-indent-object'
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
-
 
 " CtrlP 
 Bundle 'kien/ctrlp.vim'
@@ -154,7 +147,6 @@ let g:ctrlp_open_multiple_files = 't' " Open multiple files in new tabs
 let g:ctrlp_show_hidden = 1 " Index hidden files
 set wildignore+=*/public/uploads/*
 
-
 " Only show cursorline in the current window and in normal mode.
 augroup cline
     au!
@@ -163,30 +155,6 @@ augroup cline
     au InsertEnter * set nocursorline
     au InsertLeave * set cursorline
 augroup END
-
-
-" Automatically set paste mode in Vim when pasting in insert mode  
-" https://coderwall.com/p/if9mda
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
-
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"                                                 
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
-
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~                                       
-  set paste
-  return ""
-endfunction
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()         
-
 
 " File associations
 au BufNewFile,BufRead *.sql set filetype=pgsql

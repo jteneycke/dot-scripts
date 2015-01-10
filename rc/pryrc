@@ -1,31 +1,4 @@
-begin
-  require 'awesome_print'
-  AwesomePrint.defaults = {
-    indent: -2, # left aligned
-    sort_keys: true, # sort hash keys
-  }
-
-  module AwesomePrint
-    class Inspector
-      alias_method :old_printable, :printable
-      private
-      def printable(object)
-        if object.class.to_s.downcase.include?("activerecord_relation")
-          return :activerecord_relation
-        end
-        old_printable(object)
-      end
-    end
-  end
-rescue LoadError => err
-  puts "Oh darn! No AwesomePrint! Add it to your gemfile."
-  puts ""
-  puts "       gem 'awesome_print'"
-  puts ""
-end
-
 Pry.config.editor = 'vim'
-Pry.config.theme = "pry-modern-256"
 
 #if defined? Coolline
 #  Pry.config.input = Coolline.new do |c|
@@ -41,3 +14,21 @@ Pry.config.theme = "pry-modern-256"
 #    end
 #  end
 #end
+#
+
+if defined?(AwesomePrint)
+  AwesomePrint.pry!
+
+  module AwesomePrint
+    class Inspector
+      alias_method :old_printable, :printable
+      private
+      def printable(object)
+        if object.class.to_s.downcase.include?("activerecord_relation")
+          return :activerecord_relation
+        end
+        old_printable(object)
+      end
+    end
+  end
+end

@@ -20,7 +20,8 @@ set $alt Mod1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:DejaVu Sans Mono 25
+#font pango:DejaVu Sans Mono 25
+font pango:DejaVu Sans Mono 12
 exec --no-startup-id feh --bg-scale /home/josh/Pictures/website-background2.jpg
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -32,9 +33,14 @@ bindsym $mod+Shift+Return  split horizontal;  exec i3-sensible-terminal
 bindsym $mod+Shift+O       exec google-chrome
 bindsym $mod+Shift+I       exec google-chrome --incognito
 bindsym $mod+Shift+D       exec dolphin
-bindsym $mod+bracketleft   exec amixer set Master 1-
-bindsym $mod+bracketright  exec amixer set Master 1+
-bindsym $mod+backslash     exec amixer -D pulse set Master toggle
+
+#bindsym XF86AudioStop
+#bindsym XF86AudioPrev
+#bindsym XF86AudioPlay
+#bindsym XF86AudioNext
+#bindsym XF86AudioLowerVolume  exec amixer set Master 1-
+#bindsym XF86AudioRaiseVolume  exec amixer set Master 1+
+bindsym XF86AudioMute exec amixer -D pulse set Master toggle
 
 # Music Workspace
 set $WS0 Music [0]
@@ -55,9 +61,9 @@ exec xdg-open "https://www.duolingo.com/"
 assign [class="Google-chrome-stable" title="^Duolingo.*"] Language [3]
 
 # Contract Workspaces
-set $WS4 Hollistons [4]
-set $WS5 Worn [5]
-set $WS6 Bonfide [6]
+set $WS4 Editor [4]
+set $WS5 Browser [5]
+set $WS6 Servers [6]
 
 # Undecided / Scratch Space
 set $WS7 Research [7]
@@ -68,20 +74,14 @@ set $WS9 Research [9]
 for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Progress Dialog)"] floating enable
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Space+q kill
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#bindsym $mod+d exec --no-startup-id my_dmenu
-#bindsym $mod+space exec --no-startup-id gnome-do
-
-bindsym $mod+space       split horizontal; exec --no-startup-id gnome-do
-bindsym $mod+Shift+space split vertical;   exec --no-startup-id gnome-do
-
-
+bindsym $mod+d exec --no-startup-id my_dmenu
 
 # split in horizontal orientation
 bindsym $mod+equal split horizontal
@@ -133,8 +133,10 @@ bindsym $mod+Shift+e layout toggle split
 # focus the child container
 #bindsym $mod+d focus child
 
-bindsym $mod+Super_R workspace prev_on_output
-bindsym $mod+Menu workspace next_on_output
+bindsym $mod+space workspace back_and_forth
+bindsym $mod+comma workspace prev_on_output
+bindsym $mod+period workspace next_on_output
+
 
 # switch to workspace
 bindsym $mod+KP_1 workspace $WS1
@@ -232,5 +234,6 @@ bar {
     }
     #position top
     status_command i3status -c ~/.i3/status
-    font pango:DejaVu Sans Mono 30
+    #font pango:DejaVu Sans Mono 30
+    font pango:DejaVu Sans Mono 22
 }
