@@ -8,6 +8,7 @@ alias v="(vim -p ~/.vimrc ~/.zshrc ~/.i3/config) && echo 'Sourcing zshrc...' && 
 
 # Hack to open new terms in same dir
 alias a="gnome-terminal ."
+alias o="gnome-open"
 
 alias f="history | sed 's/^..[0-9]\+  //' | grep"
 
@@ -26,15 +27,13 @@ alias find-xprops="xprop | egrep -w 'WM_CLASS|WM_NAME|WM_WINDOW_ROLE'"
 alias rc-backup="cd ~/dot-scripts; ~/dot-scripts/backup"
 alias rc-commit="cd ~/dot-scripts; git add -A; git commit"
 
-
+alias git-undo-delete="git ls-files -d | xargs git checkout --"
 alias gif="git diff"
 alias gca='git add -A; git commit'
 alias gitcs="git diff --name-only --diff-filter=U"
 
-alias sl="ls"
 alias cls="clear; ls"
 alias lsd='ls -Fl | grep "^d"'
-alias ld='ls --color=always -F --group-directories-first'
 alias ls2="ls -lha --color=always -F --group-directories-first | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"%0o \",k);print}'"
 
 alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'
@@ -114,6 +113,10 @@ setopt HIST_IGNORE_ALL_DUPS
 #bindkey '\eOB' history-substring-search-down
 
 # Customize to your needs...
+
+d=.dircolors
+test -r $d && eval "$(dircolors $d)"
+alias ls='ls --color=always --group-directories-first'
 
 export TERM="xterm-256color"
 export EDITOR='vim -u /home/josh/.vimrc'

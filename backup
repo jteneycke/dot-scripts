@@ -5,4 +5,5 @@ cp ~/.i3/status ./rc/i3_status
 cp ~/.vimrc ./rc/vimrc
 cp ~/.pryrc ./rc/pryrc
 cp ~/.zshrc ./rc/zshrc
+cp ~/.dircolors ./rc/dircolors
 cp ~/.Xmodmap ./rc/xmodmap

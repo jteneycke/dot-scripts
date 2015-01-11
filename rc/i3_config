@@ -74,7 +74,7 @@ set $WS9 Research [9]
 for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Progress Dialog)"] floating enable
 
 # kill focused window
-bindsym $mod+Space+q kill
+bindsym $mod+q kill
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
