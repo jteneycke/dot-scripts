@@ -10,9 +10,54 @@ alias v="(vim -p ~/.vimrc ~/.zshrc ~/.i3/config) && echo 'Sourcing zshrc...' && 
 alias a="gnome-terminal ."
 alias o="gnome-open"
 
-alias f="history | sed 's/^..[0-9]\+  //' | grep"
+#alias f="history | sed 's/^..[0-9]\+  //' | grep"
+alias f="find * -type f | fzf"
 
-alias z="source ~/.zshrc"
+# fh - repeat history
+fh() {
+  print -z $(([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s | sed 's/ *[0-9]* *//')
+}
+
+# cdf - cd into the directory of the selected file
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && vim "$file"
+}
+
+# Equivalent to above, but opens it with `open` command
+fo() {
+  local file
+  file=$(fzf --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && gnome-open "$file"
+}
+
+# fkill - kill process
+fkill() {
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
+}
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+alias z="echo 'Sourcing zshrc...' && source ~/.zshrc"
 alias y="youtube-dl"
 alias ack="ack-grep"
 alias sai="sudo apt-get install"
@@ -31,6 +76,7 @@ alias git-undo-delete="git ls-files -d | xargs git checkout --"
 alias gif="git diff"
 alias gca='git add -A; git commit'
 alias gitcs="git diff --name-only --diff-filter=U"
+alias gitv='git log --decorate=full --graph --oneline'
 
 alias cls="clear; ls"
 alias lsd='ls -Fl | grep "^d"'
@@ -134,3 +180,4 @@ eval "$(rbenv init - zsh)"
 # Node Version Manager
 export NVM_DIR="/home/josh/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

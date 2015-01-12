@@ -30,6 +30,8 @@ set directory=~/.vim/tmp/swap//   " swap files
 set backup
 set noswapfile
 
+set rtp+=~/.fzf
+
 inoremap jk <Esc>
 vnoremap jk <Esc>
 
@@ -40,12 +42,17 @@ map <Leader>r :w<CR>:so ~/.vimrc<CR>:call system("i3-msg restart")<CR>
 map <Leader>b :BundleInstall<CR>
 
 " Fast up / down
-nnoremap <S-j> <C-d>
-nnoremap <S-k> <C-u>
+"nnoremap <S-j> <C-d>
+"nnoremap <S-k> <C-u>
+nnoremap <S-j> }
+nnoremap <S-k> {
 
 " Easy splitted window navigation
 nnoremap <S-h> <C-w>h
 nnoremap <S-l> <C-w>l
+
+"nnoremap <Leader>p :CtrlP<CR>
+nnoremap <Leader>p :FZF<CR>
 
 nnoremap <Leader>d :NERDTreeFind<CR>
 map <Leader>f <plug>NERDTreeTabsToggle<CR>
@@ -68,6 +75,7 @@ autocmd User GoyoLeave Limelight!
 " Paste last line of pry history to buffer
 nmap <Leader>ph :<c-u>let pc = (v:count1 ? v:count1 : 1)<cr>:read !tail -<c-r>=pc<cr> ~/.pry_history<cr>:.-<c-r>=pc-1<cr>:norm <c-r>=pc<cr>==<cr>
 
+
 " Begin Vundle Config
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -81,6 +89,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
@@ -101,6 +110,9 @@ Bundle 'exu/pgsql.vim'
 Bundle 'guns/vim-clojure-static'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mustache/vim-mustache-handlebars'
+
+let g:mustache_abbreviations = 1
 
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-endwise'
