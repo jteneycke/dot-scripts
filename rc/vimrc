@@ -66,6 +66,8 @@ map <Leader>q :q<CR>
 map <Leader>s :w<CR>
 map <Leader>w :w<CR>
 
+map <Leader>gb :Gblame<CR>
+
 map <Leader>g :Goyo<CR>
 autocmd User GoyoEnter :set linebreak
 autocmd User GoyoEnter Limelight

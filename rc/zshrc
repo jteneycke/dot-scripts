@@ -5,13 +5,27 @@ ZSH_THEME="robbyrussell"
 
 # Open all of the rc's!
 alias v="(vim -p ~/.vimrc ~/.zshrc ~/.i3/config) && echo 'Sourcing zshrc...' && source ~/.zshrc" 
+alias pbcopy="xclip -selection clipboard"
 
 # Hack to open new terms in same dir
 alias a="gnome-terminal ."
 alias o="gnome-open"
 
-#alias f="history | sed 's/^..[0-9]\+  //' | grep"
-alias f="find * -type f | fzf"
+alias f="history | sed 's/^..[0-9]\+  //' | grep"
+alias finda="find * -type f | fzf"
+
+hamlize() {
+    if hash html2haml 2>/dev/null; then
+      for file in $(find . -type f -name \*.html.erb); do
+        echo -e "\e[1;34mConverting\e[0m ${file}";
+        html2haml -e ${file} "$(dirname ${file})/$(basename ${file} .erb).haml";
+        echo -e "  \e[1;31mRemoving\e[0m ${file}";
+        rm ${file};
+      done
+    else
+      echo "Sorry bud, but you need to \n\n    gem install html2haml\n\n"
+    fi
+}
 
 # fh - repeat history
 fh() {
@@ -172,6 +186,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # Ruby version management
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:/home/josh/Projects/elixir/bin"
 eval "$(rbenv init - zsh)"
 
 # OPAM configuration for OCAML
