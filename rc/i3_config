@@ -49,12 +49,12 @@ assign [class="Deadbeef"] Music [0]
 
 # Persisent Planning, Writing, Learning
 set $WS1 Dashboard [1]
-exec xdg-open "http://localhost:3000"
-assign [class="Google-chrome-stable" title="^http.\/\/localhost.*"] Dashboard [1]
+#exec xdg-open "http://localhost:3000"
+#assign [class="Google-chrome-stable" title="^http.\/\/localhost.*"] Dashboard [1]
 
 set $WS2 Writing [2]
-exec gedit
-assign [class="Gedit"] Writing [2]
+#exec gedit
+#assign [class="Gedit"] Writing [2]
 
 set $WS3 Language [3]
 exec xdg-open "https://www.duolingo.com/"
@@ -71,7 +71,7 @@ set $WS8 Research [8]
 set $WS9 Research [9]
 
 
-for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Progress Dialog)"] floating enable
+for_window [class="Dolphin" title="(Copying.*)|(Moving.*)|(Deleting.*)|(Progress Dialog)"] floating enable
 
 # kill focused window
 bindsym $mod+q kill

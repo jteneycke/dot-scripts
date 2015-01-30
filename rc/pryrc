@@ -15,6 +15,28 @@ Pry.config.editor = 'vim'
 #  end
 #end
 #
+#
+#
+#
+# string.split("\n").map{|x| x.gsub(";", "") }.map{|x| x.delete("{}") }.map{|x| x.split(",").map{|x| x.split(",") } }.flatten.map(&:strip)
+
+
+#require 'html2haml'
+require 'clipboard'
+class J
+  def self.copy(data)
+    Clipboard.copy(data)
+  end
+
+  def self.paste
+    Clipboard.paste
+  end
+
+#  def self.haml2hash
+#    Clipboard.copy File.read("index.haml").split("\n").map(&:strip).map{|x| x.match(/\{.*\}/) }.compact.map{|x| x.to_s }.join("\n")
+#  end
+end
+
 
 if defined?(AwesomePrint)
   AwesomePrint.pry!

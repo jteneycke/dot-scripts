@@ -89,6 +89,14 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
+Bundle 'vrybas/vim-flog'
+Bundle 'rainerborene/vim-reek'
+Bundle 'prophittcorey/vim-flay'
+
+"let g:reek_always_show = 0
+"nnoremap <Leader>m :Flay<CR>
+
+
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'Valloric/YouCompleteMe'
@@ -128,10 +136,13 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
+Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'tomasr/molokai'
 Bundle 'junegunn/seoul256.vim'
-let g:seoul256_background = 234
-colo seoul256
+Bundle "daylerees/colour-schemes", { "rtp": "vim/" }
+colorscheme molokai
+"let g:seoul256_background = 234
+"colo seoul256
 
 " Some OCAML stuff
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
