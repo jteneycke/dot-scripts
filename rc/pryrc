@@ -1,5 +1,10 @@
 Pry.config.editor = 'vim'
 
+def hamlize(html)
+  IO.popen("html2haml", "w"){|x| x.puts(html) }
+end
+
+
 #if defined? Coolline
 #  Pry.config.input = Coolline.new do |c|
 #    # c.word_boundaries += ["."]
@@ -38,19 +43,19 @@ class J
 end
 
 
-if defined?(AwesomePrint)
-  AwesomePrint.pry!
-
-  module AwesomePrint
-    class Inspector
-      alias_method :old_printable, :printable
-      private
-      def printable(object)
-        if object.class.to_s.downcase.include?("activerecord_relation")
-          return :activerecord_relation
-        end
-        old_printable(object)
-      end
-    end
-  end
-end
+#if defined?(AwesomePrint)
+#  AwesomePrint.pry!
+#
+  #module AwesomePrint
+  #  class Inspector
+  #    alias_method :old_printable, :printable
+  #    private
+  #    def printable(object)
+  #      if object.class.to_s.downcase.include?("activerecord_relation")
+  #        return :activerecord_relation
+  #      end
+  #      old_printable(object)
+  #    end
+  #  end
+  #end
+#end

@@ -7,7 +7,7 @@ alias cdhd500="cd /mnt/298a9700-7818-42dd-8c0a-dbadf45632e5"
 alias cdhd1000="cd /mnt/9ab6f226-2980-4006-99a8-67c7d40774e5"
 
 # Open all of the rc's!
-alias v="(vim -p ~/.vimrc ~/.zshrc ~/.i3/config) && echo 'Sourcing zshrc...' && source ~/.zshrc" 
+alias v="(vim -p ~/.vimrc ~/.zshrc ~/.pryrc ~/.i3/config) && echo 'Sourcing zshrc...' && source ~/.zshrc" 
 alias pbcopy="xclip -selection clipboard"
 
 # Hack to open new terms in same dir
@@ -193,6 +193,10 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$PATH:/home/josh/Projects/elixir/bin"
 eval "$(rbenv init - zsh)"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # OPAM configuration for OCAML
 . /home/josh/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

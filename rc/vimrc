@@ -194,6 +194,7 @@ au BufNewFile,BufRead *.odocl set filetype=ocaml
 au BufNewFile,BufRead *.topscript set filetype=ocaml
 au BufNewFile,BufRead *.rawscript set filetype=ocaml
 au BufNewFile,BufRead .pryrc set filetype=ruby
+au BufNewFile,BufRead *.cr set filetype=ruby
 au BufNewFile,BufRead *.routes set filetype=erlang
 au BufNewFile,BufRead rebar.config set filetype=erlang
 au BufRead,BufNewFile schema.rb set filetype=txt
